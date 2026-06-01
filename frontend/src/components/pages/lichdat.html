@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="customer.css">
+    <link rel="stylesheet" href="lichdat.css">
+    <link rel="stylesheet" href="/font/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <style>
+        .qr-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .qr-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .qr-content img {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="nav" id="nav">
+        <ul class="navbar">
+            <li class="navbar-item navleft">
+                <i class="fa-solid fa-bars ss" onclick="toggleMenu()"></i>
+                <p class="nav-sanbong" onclick="window.location.href='customer.html';"><i
+                        class="fa-solid fa-futbol cc"></i>Sân bóng D2HT</p>
+            </li>
+            <ul class="menu">
+                <li class="menu-item aa">
+                    <i class="fa-solid fa-bars aa" onclick="toggleMenu()"></i>
+                    <p class="menu-item-aa"><i class="fa-solid fa-futbol cc"></i>Sân bóng D2HT</p>
+                </li>
+                <li class="menu-item bb"><a class="menu-item-bb" href="customer.html"><i
+                            class="fa-solid fa-house cc"></i>Trang chủ</a></li>
+                <li class="menu-item bb"><a class="menu-item-bb" href="lichdat.html"><i
+                            class="fa-solid fa-calendar cc"></i>Quản Lý Lịch Đặt</a></li>
+                <li class="menu-item bb"><a class="menu-item-bb" href="danhgia.html"><i
+                            class="fa-solid fa-star cc"></i>Đánh Giá Chất Lượng Sân</a></li>
+            </ul>
+            <li class="navbar-item qq">
+                <i class="fa-solid fa-user dd"></i>
+                <div id="user-outside" class="user" onclick="toggleUser()"></div> <!-- Hiện tên bên ngoài -->
+                <div class="user-container">
+                    <div class="user-inside">
+                        <i class="fa-solid fa-user dd"></i>
+                        <div id="user-inside" class="user" onclick="toggleUser()"></div>
+                    </div>
+                    <div class="user-item"><a href="userin4.html" class="signoutuser">Thông tin cá nhân</a></div>
+                    <div class="user-item"><a href="signin.html" class="signoutuser">Đăng xuất</a></div>
+                </div>
+            </li>
+        </ul>
+    </header>
+
+    <div class="layout1" onclick="toggleMenu()"></div>
+    <div class="layout2" onclick="toggleUser()"></div>
+    <div class="container">
+        <h2 class="header-c">Lịch đặt sân của tôi</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sân</th>
+                    <th>Ngày</th>
+                    <th>Giờ bắt đầu</th>
+                    <th>Giờ kết thúc</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="booking-list"></tbody>
+        </table>
+    </div>
+
+    <!-- Form chỉnh sửa và thanh toán -->
+    <div id="editForm" class="edit-popup" style="display:none;">
+        <h2>Thanh toán Lịch Đặt</h2>
+        <label for="editName">Sân:</label>
+        <input type="text" id="editName">
+        <label for="editDate">Ngày:</label>
+        <input type="date" id="editDate">
+        <label for="editStartTime">Giờ Bắt Đầu:</label>
+        <input type="time" id="editStartTime">
+        <label for="editEndTime">Giờ Kết Thúc:</label>
+        <input type="time" id="editEndTime">
+        <button onclick="saveEdit()">Thanh toán</button>
+        <button onclick="closeEditForm()">Hủy</button>
+    </div>
+
+    <!-- Popup mã QR -->
+    <div id="qrPopup" class="qr-popup">
+        <div class="qr-content">
+            <h2>Quét mã QR để thanh toán</h2>
+            <img id="qrImage" src="" alt="QR Code">
+            <br>
+            <button onclick="closeQrPopup()">Đóng</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Liên hệ</h3>
+                <p>🏠 Địa chỉ: Phòng 303, tòa B1, Đại học Bách Khoa Hà Nội</p>
+                <p>📞 Điện thoại: <a href="tel:0969272243">0969272243</a></p>
+                <p>✉️ Email: <a href="mailto:tranvanduy2k5gtc@gmail.com">tranvanduy2k5gtc@gmail.com</a></p>
+            </div>
+            <div class="footer-social">
+                <h3>Kết nối với chúng tôi</h3>
+                <a href="#" class="social-icon"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i> Twitter</a>
+            </div>
+        </div>
+        <p class="footer-copy">© 2025 Sân bóng D2HT. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const fakeBookings = [
+            { id: 1, field: "Sân A", Date: "2025-04-10", startTime: "18:00", endTime: "19:00" },
+            { id: 2, field: "Sân B", Date: "2025-04-12", startTime: "20:00", endTime: "21:30" },
+            { id: 3, field: "Sân C", Date: "2025-04-15", startTime: "17:00", endTime: "18:30" }
+        ];
+
+        let currentBookingId = null;
+
+        function fetchFakeBookings() {
+            const tableBody = document.getElementById("booking-list");
+            tableBody.innerHTML = "";
+
+            fakeBookings.forEach(booking => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+          <td>${booking.field}</td>
+          <td>${booking.Date}</td>
+          <td>${booking.startTime}</td>
+          <td>${booking.endTime}</td>
+          <td>
+            <button onclick="openEditForm(${booking.id})">Thanh toán</button>
+            <button onclick="deleteBooking(${booking.id})">Xoá</button>
+          </td>
+        `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function openEditForm(id) {
+            const booking = fakeBookings.find(b => b.id === id);
+            if (booking) {
+                currentBookingId = id;
+                document.getElementById("editName").value = booking.field;
+                document.getElementById("editDate").value = booking.Date;
+                document.getElementById("editStartTime").value = booking.startTime;
+                document.getElementById("editEndTime").value = booking.endTime;
+                document.getElementById("editForm").style.display = "block";
+            }
+        }
+
+        function closeEditForm() {
+            document.getElementById("editForm").style.display = "none";
+            currentBookingId = null;
+        }
+
+        function saveEdit() {
+            const newStart = document.getElementById("editStartTime").value;
+            const newEnd = document.getElementById("editEndTime").value;
+            const booking = fakeBookings.find(b => b.id === currentBookingId);
+            if (booking) {
+                booking.startTime = newStart;
+                booking.endTime = newEnd;
+            }
+
+            closeEditForm();
+            fetchFakeBookings();
+
+            // Hiển thị popup QR
+            const qrData = `Thanh toán cho ${booking.field} - ${booking.Date} từ ${newStart} đến ${newEnd}`;
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrData)}`;
+            document.getElementById("qrImage").src = qrUrl;
+            document.getElementById("qrPopup").style.display = "flex";
+        }
+
+        function closeQrPopup() {
+            document.getElementById("qrPopup").style.display = "none";
+        }
+
+        function deleteBooking(id) {
+            const index = fakeBookings.findIndex(b => b.id === id);
+            if (index !== -1) {
+                if (confirm("Bạn có chắc muốn xoá lịch đặt này?")) {
+                    fakeBookings.splice(index, 1);
+                    fetchFakeBookings();
+                }
+            }
+        }
+
+        const username = [
+            { nameuser: "Tran Duy" }
+        ];
+        hienThiUser(username);
+        function hienThiUser(data) {
+            const outside = document.getElementById("user-outside");
+            const inside = document.getElementById("user-inside");
+
+            outside.innerHTML = "";
+            inside.innerHTML = "";
+
+            if (data.length === 0) {
+                outside.innerHTML = "<p>Không tìm thấy user</p>";
+                inside.innerHTML = "<p>Không tìm thấy user</p>";
+                return;
+            }
+
+            data.forEach(user => {
+                const html = `<div class="user-name"><p>${user.nameuser}</p></div>`;
+                outside.innerHTML += html;
+                inside.innerHTML += html;
+            });
+        }
+        function toggleMenu() {
+            document.querySelector(".menu").classList.toggle("show");
+            document.querySelector(".layout1").classList.toggle("show");
+        }
+        function toggleUser() {
+            document.querySelector(".user-container").classList.toggle("show");
+            document.querySelector(".layout2").classList.toggle("show");
+        }
+
+        window.onload = fetchFakeBookings;
+    </script>
+</body>
+
+</html>

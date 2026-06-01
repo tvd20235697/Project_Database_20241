@@ -1,0 +1,4 @@
+.dashboard { }
+.stat-icon { font-size: 28px; margin-bottom: 8px; }
+.page-section { margin-bottom: 32px; }
+.page-section h2 { font-size: 20px; font-weight: 700; color: var(--text-primary); }

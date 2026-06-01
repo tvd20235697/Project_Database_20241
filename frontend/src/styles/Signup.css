@@ -1,0 +1,117 @@
+/* src/styles/Signup.css */
+
+/* Nhúng font Dancing Script */
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap");
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.signup-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px 0;
+  box-sizing: border-box;
+  
+  background: url("../../public/images/anhnen.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+.signup-card {
+  background-color: #4f4b6b;
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+.signup-title {
+  font-family: "Dancing Script", cursive;
+  font-size: 36px;
+  text-align: center;
+  margin: 0 0 30px 0;
+}
+
+/* Flex row cho label + input */
+.field-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.field-row label {
+  width: 130px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.field-row input {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.field-row input::placeholder {
+  color: #999999;
+}
+
+.input-error {
+  border: 2px solid #ff3333 !important;
+  background-color: rgba(255, 0, 0, 0.05);
+}
+
+.error-message {
+  color: #ff3333;
+  font-size: 14px;
+  margin: 5px 0 10px calc(130px + 15px);
+}
+
+/* Buttons */
+.signup-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.btn-register,
+.btn-back-signin {
+  width: calc(50% - 10px);
+  padding: 12px 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #06c1d5;
+  color: #ffffff;
+}
+
+.btn-register:hover,
+.btn-back-signin:hover {
+  background-color: #05a2b3;
+}
+
+/* Responsive */
+@media (max-width: 420px) {
+  .signup-card { width: 90%; padding: 30px 20px; }
+  .signup-buttons { flex-direction: column; gap: 15px; }
+  .btn-register, .btn-back-signin { width: 100%; }
+}

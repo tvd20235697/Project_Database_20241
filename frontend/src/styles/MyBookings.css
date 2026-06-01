@@ -1,0 +1,27 @@
+.my-bookings-page { padding: 32px 0; }
+
+.tabs { display: flex; gap: 4px; margin-bottom: 24px; background: #fff; padding: 4px; border-radius: var(--radius); box-shadow: var(--shadow); width: fit-content; }
+.tab { padding: 10px 20px; border-radius: var(--radius-sm); border: none; background: transparent; cursor: pointer; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: all 0.2s; }
+.tab:hover { background: var(--bg); }
+.tab.active { background: var(--primary); color: #fff; }
+.tab-count { background: rgba(255,255,255,0.3); padding: 1px 8px; border-radius: 20px; font-size: 12px; }
+.tab:not(.active) .tab-count { background: var(--bg); color: var(--text-secondary); }
+
+.bookings-list { display: flex; flex-direction: column; gap: 16px; }
+.booking-card { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transition: box-shadow 0.2s; }
+.booking-card:hover { box-shadow: var(--shadow-md); }
+.booking-card-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--bg); }
+.booking-card-header h3 { font-size: 18px; font-weight: 700; color: var(--primary); }
+.booking-branch { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+.booking-card-body { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 16px 20px; }
+.booking-detail { display: flex; flex-direction: column; gap: 4px; }
+.booking-detail span { font-size: 12px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; }
+.booking-detail strong { font-size: 15px; }
+.booking-detail .price { color: var(--primary); }
+.booking-card-footer { padding: 12px 20px; border-top: 1px solid var(--border); display: flex; gap: 10px; justify-content: flex-end; }
+
+@media (max-width: 600px) {
+  .booking-card-body { grid-template-columns: 1fr; }
+  .tabs { width: 100%; }
+  .tab { flex: 1; justify-content: center; font-size: 13px; padding: 8px 12px; }
+}
