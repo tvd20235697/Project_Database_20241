@@ -34,8 +34,7 @@ He thong quan ly san bong tructuyen - du an hoc phan Co So Du Lieu Phan Tan (THC
 ---
 
 ## Mo ta du an
-
-SanBong la mot he thong quan ly san bong tructuyen, cho phep nguoi dung dat san, quan ly lich dat, danh gia san bong, va quan tri he thong mot cach hieu qua. Du an duoc xay dung theo kien truc **Full-Stack** voi backend Java Spring Boot va frontend React.
+Hệ thống Quản lý Sân Bóng là một nền tảng trực tuyến được thiết kế nhằm đơn giản hóa việc đặt và quản lý sân bóng. Hệ thống cho phép người dùng tìm kiếm các sân còn trống, đặt sân, quản lý các lượt đặt và gửi đánh giá dựa trên trải nghiệm của mình. Đồng thời, hệ thống cung cấp các chức năng quản trị để quản lý thông tin sân bóng, lịch hoạt động, giá thuê và dữ liệu khách hàng. Thông qua việc số hóa quy trình đặt sân, hệ thống giúp nâng cao hiệu quả vận hành và mang lại trải nghiệm thuận tiện cho cả khách hàng lẫn đơn vị quản lý sân.
 
 Dac diem noi bat:
 - Dat san truc tuyen voi kiem tra tinh khả dụng theo thoi gian thuc
