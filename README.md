@@ -433,7 +433,7 @@ sudo systemctl start mysql
 
 ## Lich su phien ban
 
-### v2.0 (2026-06-01)
+### v2.0 (2025-04-01)
 - Tai cau truc backend theo nguyen tac OOP (entities, DTOs, services, controllers)
 - Chuyen frontend sang React voi cac trang moi: Trang chu, Dat san, Lich su, Danh gia, Ca nhan, Quan ly
 - Thay the database MySQL = H2 cho moi truong dev
